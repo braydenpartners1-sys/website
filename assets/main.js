@@ -2,6 +2,11 @@
   var doc = document.documentElement;
   doc.classList.remove('no-js');
 
+  // Old links ending in /index.html: show the clean address instead
+  if (/\/index\.html$/.test(location.pathname) && history.replaceState) {
+    history.replaceState(null, '', location.pathname.replace(/index\.html$/, '') + location.search + location.hash);
+  }
+
   // Header border on scroll
   var header = document.querySelector('.site-header');
   function onScroll() { if (header) header.classList.toggle('scrolled', window.scrollY > 8); }
