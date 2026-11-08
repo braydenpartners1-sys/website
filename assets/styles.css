@@ -402,3 +402,49 @@ p { margin: 0 0 1em; }
   .cs-col + .cs-col { border-top: 1px solid var(--line); }
   .svc-index { top: 84px; }
 }
+
+/* Home headline: "We don't consult." always on one line */
+.hh-grid { grid-template-columns: 1fr; align-items: start; }
+.hh-grid h1 { font-size: clamp(34px, 7.2vw, 112px); }
+.hh-grid h1 .nw { white-space: nowrap; display: block; }
+.hh-foot { display: grid; grid-template-columns: 1fr auto; gap: 32px 48px; align-items: end; padding-top: 28px; border-top: 4px solid var(--accent); }
+.hh-foot .lead { margin: 0; max-width: 60ch; }
+@media (max-width: 960px) { .hh-foot { grid-template-columns: 1fr; } }
+
+/* Five services plus a prompt card */
+.cards-3 { grid-template-columns: repeat(3, 1fr); row-gap: 48px; }
+.card-cta { border-top-color: var(--accent); }
+@media (max-width: 1100px) { .cards-3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .cards-3 { grid-template-columns: 1fr; } }
+
+/* Insights index */
+.insight-list { display: grid; gap: 0; border-top: 1px solid var(--ink); }
+.insight { display: grid; grid-template-columns: 160px 1fr; column-gap: 48px; padding: 32px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+.insight .for { grid-row: span 3; font-size: 14px; font-weight: 600; color: var(--accent-dark); padding-top: 6px; }
+.insight h2 { font-size: clamp(24px, 2.4vw, 32px); margin-bottom: 10px; }
+.insight p { color: var(--muted); margin: 0 0 16px; max-width: 70ch; }
+.insight:hover h2 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+@media (max-width: 700px) { .insight { grid-template-columns: 1fr; } .insight .for { grid-row: auto; margin-bottom: 8px; } }
+
+/* Article pages */
+.article-col { max-width: 780px; }
+.article-head { padding: clamp(48px, 5.5vw, 88px) 0 clamp(32px, 4vw, 56px); border-bottom: 1px solid var(--line); margin-bottom: clamp(32px, 4vw, 56px); }
+.article-head .for { display: block; font-size: 14px; font-weight: 600; color: var(--accent-dark); margin-bottom: 14px; }
+.article-head h1 { font-size: clamp(34px, 4.4vw, 60px); line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 24px; }
+.article-body { padding-bottom: clamp(48px, 6vw, 88px); }
+.article-body > p { font-size: 19px; line-height: 1.75; color: var(--text, #1b2433); }
+.article-body > h2 { font-size: clamp(24px, 2.3vw, 30px); margin: 44px 0 14px; letter-spacing: -0.02em; }
+.article-body strong { color: var(--ink); }
+.table-wrap { overflow-x: auto; margin: 8px 0 24px; }
+.article-body table { width: 100%; border-collapse: collapse; font-size: 16px; }
+.article-body th { text-align: left; font-weight: 600; color: var(--ink); border-bottom: 2px solid var(--ink); padding: 10px 16px 10px 0; }
+.article-body td { border-bottom: 1px solid var(--line); padding: 12px 16px 12px 0; vertical-align: top; }
+.article-body td:first-child { white-space: nowrap; color: var(--accent-dark); font-weight: 600; }
+.article-sources, .article-more { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
+.article-sources h2, .article-more h2 { font-size: 16px; letter-spacing: 0; margin-bottom: 12px; }
+.article-sources ul, .article-more ul { margin: 0; padding-left: 18px; }
+.article-sources li { font-size: 15px; margin-bottom: 6px; color: var(--muted); }
+.article-more li { margin-bottom: 8px; }
+.article-sources a, .article-more a { color: var(--ink); text-underline-offset: 3px; }
+@media (max-width: 600px) { .article-body td:first-child { white-space: normal; } }
+.hh-grid h1 { font-size: clamp(26px, calc((100vw - 48px) / 10), 112px); }
