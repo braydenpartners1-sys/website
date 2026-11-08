@@ -44,6 +44,15 @@
   // Footer year
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
+  // Contact form: preselect the enquiry area from ?service=<key>
+  var pick = new URLSearchParams(location.search).get('service');
+  var sel = document.getElementById('service');
+  if (pick && sel) {
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].getAttribute('data-key') === pick) { sel.selectedIndex = i; break; }
+    }
+  }
+
   // Contact form: show a sending state so visitors do not submit twice
   var form = document.getElementById('enquiry');
   if (form) {
