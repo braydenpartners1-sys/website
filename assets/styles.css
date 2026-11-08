@@ -329,3 +329,18 @@ p { margin: 0 0 1em; }
   .process li, .process li + li { padding-left: 0; border-left: 0; }
   .process li + li { border-top: 1px solid var(--line); margin-top: 20px; }
 }
+
+/* Image-and-text banners */
+.split-hero { padding: clamp(20px, 2.5vw, 36px) 0 clamp(40px, 5vw, 72px); border-bottom: 1px solid var(--line); }
+.split-hero .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(28px, 4vw, 64px); align-items: center; }
+.split-media img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; border-radius: 16px; background: var(--stone); }
+.split-copy h1 { font-size: clamp(36px, 4.2vw, 64px); line-height: 1.03; letter-spacing: -0.035em; margin-bottom: 24px; }
+.home-hero .split-copy h1 { font-size: clamp(42px, 4.8vw, 76px); }
+.split-copy .lead { margin-bottom: 32px; }
+.split-copy .crumb { margin-bottom: 20px; }
+.case-media img { width: 100%; aspect-ratio: 21 / 8; object-fit: cover; border-radius: 16px; margin-bottom: 36px; background: var(--stone); }
+@media (max-width: 960px) {
+  .split-hero .wrap { grid-template-columns: 1fr; gap: 28px; }
+  .split-media img { aspect-ratio: 3 / 2; }
+  .case-media img { aspect-ratio: 16 / 9; }
+}
