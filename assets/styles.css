@@ -479,3 +479,76 @@ p { margin: 0 0 1em; }
   .ai-option + .ai-option { border-top: 1px solid var(--line); }
 }
 .page-hero .kicker { display: block; }
+
+/* Approved BP logo lockup */
+.brand img { display: block; height: 28px; width: auto; }
+.site-footer .brand { margin-bottom: 8px; }
+.site-footer .brand img { height: 24px; }
+@media (max-width: 600px) { .brand img { height: 22px; } }
+
+/* Hero paragraphs */
+.page-hero .lead + .lead, .portrait-hero .lead + .lead, .overlay-hero .lead + .lead, .band-hero .lead + .lead { margin-top: -4px; }
+.band-hero .lead:last-of-type { margin-bottom: clamp(36px, 4vw, 56px); }
+.band-hero .lead { margin-bottom: 14px; }
+
+/* Numbered service cards */
+.card-n { display: block; font-size: 14px; font-weight: 600; color: var(--accent-dark); margin-bottom: 12px; letter-spacing: 0.04em; }
+
+/* Services page */
+.svc2 { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(32px, 5vw, 80px); padding: clamp(48px, 5vw, 80px) 0; border-top: 1px solid var(--line); scroll-margin-top: 150px; }
+.svc2:first-child { border-top: 0; }
+.svc2-head .for { display: block; font-size: 14px; font-weight: 600; color: var(--accent-dark); margin-bottom: 14px; }
+.svc2-head h2 { font-size: clamp(28px, 3vw, 42px); margin-bottom: 20px; }
+.svc2-head .desc p { color: var(--body); margin: 0 0 12px; }
+.svc2-head { position: sticky; top: 150px; align-self: start; }
+.help-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin: 8px 0 28px; border-top: 1px solid var(--ink); }
+.help-list > div { padding: 18px 0; border-bottom: 1px solid var(--line); }
+.help-list dt { font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.help-list dd { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.55; }
+.svc2-body .outcome { margin-bottom: 20px; }
+.svc-who { margin-bottom: 24px; }
+.svc-who p { margin: 0; color: var(--body); }
+@media (max-width: 960px) {
+  .svc2 { grid-template-columns: 1fr; }
+  .svc2-head { position: static; }
+  .help-list { grid-template-columns: 1fr; }
+}
+
+/* About: credentials */
+.credentials { list-style: none; margin: 28px 0 0; padding: 0; border-top: 1px solid var(--ink); }
+.credentials li { padding: 12px 0; border-bottom: 1px solid var(--line); font-weight: 600; color: var(--ink); }
+
+/* AI page options */
+.ai-step { letter-spacing: 0.04em; }
+.ai-receive { margin-bottom: 20px; }
+.ai-receive p { margin: 0; color: var(--ink); font-size: 16px; }
+
+/* ---- Editorial restraint: remove template patterns ---- */
+/* Links: plain underlined text, no chevrons, no gold */
+.more { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.more::after { content: none; }
+.more:hover { text-decoration-thickness: 2px; }
+
+/* Lists: no icons, just rules */
+.checks li { padding-left: 0; }
+.checks li::before { content: none; display: none; }
+.cs-col .checks li, .ai-option .checks li { padding-left: 0; }
+
+/* No numbered boxes */
+.process .n, .card-n, .ai-step { display: none; }
+.process h3 { margin-top: 4px; }
+
+/* Labels in ink or grey, never gold */
+.list-head, .cs-col h3, .case-tags, .insight .for, .article-head .for, .card .for, .col .for, .svc .for { color: var(--muted); }
+.cs-col h3 { color: var(--ink); font-size: 16px; }
+.case-tags { font-weight: 500; font-size: 15px; }
+
+/* Run-in paragraphs instead of tinted callouts */
+.runin { margin: 24px 0; color: var(--body); font-size: 17px; line-height: 1.65; }
+.runin strong { color: var(--ink); font-weight: 600; }
+.svc-tag { font-size: clamp(20px, 1.8vw, 24px); line-height: 1.35; color: var(--ink); margin: 0 0 20px; letter-spacing: -0.01em; }
+.svc2-head h2 { margin-bottom: 10px; }
+
+/* Home: a hairline, not a thick gold rule */
+.hh-foot { border-top: 1px solid var(--ink); }
+.card-cta { border-top-color: var(--ink); }
