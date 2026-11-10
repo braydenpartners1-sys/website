@@ -601,3 +601,19 @@ p { margin: 0 0 1em; }
 .pad.africa-band > .wrap { width: 100%; }
 .pad.africa-band .africa-map { width: auto; height: 118%; right: 2%; opacity: 0.09; }
 @media (max-width: 800px) { .pad.africa-band .africa-map { height: 90%; right: -25%; opacity: 0.06; } }
+
+/* Keep hyphenated words whole; balance headings and avoid one-word last lines */
+.hy { white-space: nowrap; }
+h1, h2, h3, .svc-tag, .card-sub { text-wrap: balance; }
+p, li, dd { text-wrap: pretty; }
+
+/* Tighter black sections */
+.pad.africa-band { min-height: 0; padding: clamp(48px, 5vw, 80px) 0; }
+.pad.africa-band .africa-map { height: 135%; right: 4%; }
+.page-hero.africa-band { padding: clamp(40px, 4.5vw, 72px) 0 clamp(40px, 4.5vw, 72px); }
+.page-hero.africa-band .africa-map { width: auto; height: 120%; right: 2%; }
+@media (max-width: 800px) {
+  .pad.africa-band .africa-map, .page-hero.africa-band .africa-map { height: 80%; right: -30%; }
+}
+.page-hero.africa-band h1 { max-width: 24ch; margin-bottom: 22px; }
+.page-hero.africa-band .lead { margin-bottom: 12px; }
