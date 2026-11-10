@@ -49,7 +49,7 @@
   var sel = document.getElementById('service');
   if (pick && sel) {
     for (var i = 0; i < sel.options.length; i++) {
-      if (sel.options[i].getAttribute('data-key') === pick) { sel.selectedIndex = i; break; }
+      if ((sel.options[i].getAttribute('data-key') || '').split(' ').indexOf(pick) !== -1) { sel.selectedIndex = i; break; }
     }
   }
 

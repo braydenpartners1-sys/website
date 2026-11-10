@@ -552,3 +552,52 @@ p { margin: 0 0 1em; }
 /* Home: a hairline, not a thick gold rule */
 .hh-foot { border-top: 1px solid var(--ink); }
 .card-cta { border-top-color: var(--ink); }
+
+/* Four core services: two columns */
+.cards-2 { grid-template-columns: repeat(2, 1fr); row-gap: 48px; column-gap: 48px; }
+.card-sub { color: var(--ink); font-weight: 500; margin: 0 0 10px; font-size: 18px; }
+@media (max-width: 700px) { .cards-2 { grid-template-columns: 1fr; } }
+
+/* Home headline wraps naturally */
+.hh-grid h1 { font-size: clamp(40px, 6.6vw, 104px); max-width: 14ch; }
+
+/* Footer description */
+.foot-desc { color: #b9b6b0; font-size: 15px; line-height: 1.6; max-width: 30ch; margin: 16px 0 0; }
+
+/* Seven navigation items */
+@media (max-width: 1280px) { .nav-links { gap: 24px; } .nav-links a { font-size: 15px; } }
+@media (max-width: 1100px) { .nav-links { gap: 18px; } .nav .btn { padding: 12px 16px; } }
+
+/* Home headline: two deliberate lines, breaking on the comma */
+.hh-grid h1 { max-width: none; font-size: clamp(34px, calc((min(100vw, 1280px) - 112px) / 15.5), 76px); line-height: 1.04; }
+.hh-grid h1 .hl { display: block; }
+@media (min-width: 700px) { .hh-grid h1 .hl { white-space: nowrap; } }
+/* Phones: three balanced lines — "Strong businesses / are built, / not improvised." */
+@media (max-width: 699px) { .hh-grid h1 .nb { display: block; } }
+
+/* Menu items and header button never wrap */
+.nav-links { gap: 28px; }
+.nav-links a, .nav .btn { white-space: nowrap; }
+@media (max-width: 1280px) { .nav-links { gap: 22px; } }
+
+/* Black-owned businesses: near-black band with a faint silhouette of Africa.
+   Map: Blank_Map-Africa.svg, Wikimedia Commons, public domain (used as a stencil). */
+.africa-band { position: relative; background: #0e0e0e; color: #e9e6e0; overflow: hidden; isolation: isolate; border-bottom: 0; }
+.africa-map { position: absolute; z-index: -1; pointer-events: none; right: -6%; top: 50%; transform: translateY(-50%);
+  width: min(62vw, 820px); aspect-ratio: 1200 / 1230; background: #f4efe6; opacity: 0.08;
+  -webkit-mask: url(/assets/brand/africa.svg) center / contain no-repeat; mask: url(/assets/brand/africa.svg) center / contain no-repeat; }
+.africa-band h1, .africa-band h2 { color: #fff; }
+.africa-band .lead, .africa-band .prose p { color: rgba(255, 255, 255, 0.78); }
+.africa-band .lead strong, .africa-band .prose p.big { color: #fff; }
+.africa-band .crumb, .africa-band .crumb a { color: rgba(255, 255, 255, 0.6); }
+.africa-band .more { color: #fff; }
+.page-hero.africa-band { padding-bottom: clamp(56px, 7vw, 104px); }
+.page-hero.africa-band .lead { max-width: 52ch; }
+@media (max-width: 800px) {
+  .africa-map { width: 120vw; right: -45%; opacity: 0.06; }
+}
+/* Home band: size the continent to the band's height so the whole shape reads */
+.pad.africa-band { min-height: 560px; display: flex; align-items: center; }
+.pad.africa-band > .wrap { width: 100%; }
+.pad.africa-band .africa-map { width: auto; height: 118%; right: 2%; opacity: 0.09; }
+@media (max-width: 800px) { .pad.africa-band .africa-map { height: 90%; right: -25%; opacity: 0.06; } }
