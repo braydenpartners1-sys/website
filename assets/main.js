@@ -41,6 +41,41 @@
     items.forEach(function (el) { el.classList.add('in'); });
   }
 
+  // Quiet scroll motion. Only elements that start below the screen are held back,
+  // so nothing already visible flickers, and nothing is hidden if this script fails.
+  if (doc.classList.contains('motion') && 'IntersectionObserver' in window) {
+    var marks = [];
+    document.querySelectorAll('.cards, .process, .cols, .ai-options, .insight-list, .help-list, .cs-grid').forEach(function (el) {
+      el.classList.add('stagger');
+      Array.prototype.forEach.call(el.children, function (c, i) { c.style.setProperty('--i', Math.min(i, 6)); });
+      marks.push(el);
+    });
+    document.querySelectorAll('.case-media, .find-us').forEach(function (el) { el.classList.add('img-reveal'); marks.push(el); });
+    document.querySelectorAll('.pad.africa-band').forEach(function (el) { marks.push(el); });
+    var watch = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.remove('is-pending'); watch.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+    var pending = [];
+    marks.forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight * 0.9) { el.classList.add('is-pending'); watch.observe(el); pending.push(el); }
+    });
+    // Fallback: anything already scrolled past (fast scroll, jump links) is shown straight away
+    function sweep() {
+      pending = pending.filter(function (el) {
+        if (!el.classList.contains('is-pending')) return false;
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.88) { el.classList.remove('is-pending'); watch.unobserve(el); return false; }
+        return true;
+      });
+      if (!pending.length) window.removeEventListener('scroll', onSweep);
+    }
+    function onSweep() { sweep(); }
+    window.addEventListener('scroll', onSweep, { passive: true });
+    window.addEventListener('hashchange', sweep);
+    sweep();
+  }
+
   // Footer year
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 

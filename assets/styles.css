@@ -635,3 +635,64 @@ p, li, dd { text-wrap: pretty; }
 .article-body ol { padding-left: 24px; margin: 0 0 24px; }
 .article-body ol li { font-size: 19px; line-height: 1.7; margin-bottom: 12px; color: var(--body); }
 .article-body ol li strong { color: var(--ink); }
+
+/* ---------------------------------------------------------------
+   Motion: slow, quiet and purposeful. Only runs when html.motion is
+   set (visitor has not asked for reduced motion). Nothing bounces,
+   nothing loops, and content is never hidden without JavaScript.
+---------------------------------------------------------------- */
+@keyframes bp-rise   { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes bp-fade   { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes bp-settle { from { transform: scale(1.07); } to { transform: scale(1); } }
+@keyframes bp-unclip { from { clip-path: inset(0 0 16% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes bp-line   { 0% { background-size: 100% 1px; background-position: 100% 100%; }
+                       49% { background-size: 0 1px; background-position: 100% 100%; }
+                       50% { background-size: 0 1px; background-position: 0 100%; }
+                       100% { background-size: 100% 1px; background-position: 0 100%; } }
+
+/* Home headline: each line rises from behind a mask */
+.motion .hh-grid h1 .hl { overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.motion .hh-grid h1 .hl-in { display: block; animation: bp-rise 1s cubic-bezier(0.2, 0.7, 0.1, 1) both; }
+.motion .hh-grid h1 .hl + .hl .hl-in { animation-delay: 0.12s; }
+.motion .hh-foot { animation: bp-fade 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) 0.45s both; }
+.motion .hh-media { overflow: hidden; animation: bp-unclip 1.3s cubic-bezier(0.2, 0.7, 0.1, 1) 0.25s both; }
+.motion .hh-media img { animation: bp-settle 2.2s cubic-bezier(0.2, 0.7, 0.1, 1) both; }
+
+/* Inner page heroes: copy fades in line by line, photos settle */
+.motion :is(.page-hero, .band-hero) .wrap > *,
+.motion .portrait-hero .ph-copy > *,
+.motion .overlay-hero .wrap > * { animation: bp-fade 0.85s cubic-bezier(0.2, 0.7, 0.1, 1) both; }
+.motion :is(.page-hero, .band-hero) .wrap > :nth-child(2), .motion .portrait-hero .ph-copy > :nth-child(2), .motion .overlay-hero .wrap > :nth-child(2) { animation-delay: 0.08s; }
+.motion :is(.page-hero, .band-hero) .wrap > :nth-child(3), .motion .portrait-hero .ph-copy > :nth-child(3), .motion .overlay-hero .wrap > :nth-child(3) { animation-delay: 0.16s; }
+.motion :is(.page-hero, .band-hero) .wrap > :nth-child(n+4), .motion .portrait-hero .ph-copy > :nth-child(n+4), .motion .overlay-hero .wrap > :nth-child(n+4) { animation-delay: 0.24s; }
+.motion .ph-media, .motion .band-media { overflow: hidden; }
+.motion .ph-media img, .motion .band-media img, .motion .overlay-hero > img { animation: bp-settle 2s cubic-bezier(0.2, 0.7, 0.1, 1) both; }
+
+/* Below the fold: groups arrive with a short stagger, images unveil */
+.motion .stagger:not(.is-pending) > * { transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.1, 1), border-color 0.2s ease; transition-delay: calc(var(--i, 0) * 70ms), calc(var(--i, 0) * 70ms), 0s; }
+.motion .stagger.is-pending > * { opacity: 0; transform: translateY(16px); }
+.motion .img-reveal { overflow: hidden; clip-path: inset(0 0 0 0); }
+.motion .img-reveal:not(.is-pending) { transition: clip-path 1.2s cubic-bezier(0.2, 0.7, 0.1, 1); }
+.motion .img-reveal:not(.is-pending) img { transition: transform 1.8s cubic-bezier(0.2, 0.7, 0.1, 1); }
+.motion .img-reveal.is-pending { clip-path: inset(0 0 100% 0); }
+.motion .img-reveal.is-pending img { transform: scale(1.06); }
+.motion .africa-band:not(.is-pending) .africa-map { transition: opacity 1.6s ease, transform 2.4s cubic-bezier(0.2, 0.7, 0.1, 1); }
+.motion .africa-band.is-pending .africa-map { opacity: 0 !important; transform: translateY(-50%) scale(1.05); }
+
+/* Links: the underline draws away and back in on hover */
+.more { text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-size: 100% 1px; background-position: 0 100%; padding-bottom: 3px; }
+.motion .more:hover { animation: bp-line 0.6s cubic-bezier(0.6, 0, 0.2, 1); }
+
+/* Main navigation: a hairline grows from the left on hover */
+.nav-links a { position: relative; border-bottom-color: transparent !important; }
+.nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 26px; height: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.1, 1); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a[aria-current="page"]::after { transform: scaleX(1); background: var(--accent); }
+
+/* Buttons respond, without lifting or glowing */
+.btn { transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .motion *, .motion *::before, .motion *::after { animation: none !important; transition: none !important; }
+}
+.nav-links a::after { bottom: -1px; }
