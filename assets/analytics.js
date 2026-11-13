@@ -17,7 +17,7 @@
 (function () {
   var CONFIG = {
     GTM_ID: "",
-    GA4_ID: "",
+    GA4_ID: "G-4NXWCPBYK4",
     CLARITY_ID: ""
   };
 
